@@ -1,16 +1,22 @@
+import sys
 import subprocess
 
-def mount(remote_directory, local_directory):
-    retcode = subprocess.call(["/sbin/mount", "-t", "smbfs", remote_directory, local_directory])
+def mount(path_to_smb, path_to_local_dir):
+    retcode = subprocess.call(["/sbin/mount", "-t", "smbfs", path_to_smb, path_to_local_dir])
 
-def unmount(local_directory):
+def unmount(path_to_local_dir):
     """Unmounts the local SMB directory"""
-    retcode = subprocess.call(["/sbin/umount", local_directory])
+    retcode = subprocess.call(["/sbin/umount", path_to_local_dir])
 
-local_directory = 'path_to_local_dir'
-smb_location = 'smb location'
+def main():
+    # smb location
+    path_to_smb = str(sys.argv[1])
+    path_to_local_dir = str(sys.argv[2])
 
-mount(smb_location, local_directory)
+    mount(path_to_smb, path_to_local_dir)
 
-input("Press any key to unmount: ")
-unmount(local_directory)
+    input("Press any key to unmount: ")
+    unmount(path_to_local_dir)
+
+if __name__ == '__main__':
+    main()
