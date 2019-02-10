@@ -1,6 +1,5 @@
 # mount-smb
-Python script to mount smb location
+Python script to mount the smb location. It mounts a remote smb directory to a local directory.
 
 ## Getting up and running
-1. Replace **local_directory** and **smb_location**
-2. Run `python3 main.py`
+ - Run `python3 main.py <path-to-remote-smb-dir> <path-to-local-dir>`
